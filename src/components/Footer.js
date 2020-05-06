@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import axios from "axios"
 
 const Container = styled.div`
- width: 100wv;
+ width: 100%;
  height: 15vh;
  background-color: #DABFFF;
- position: relative;
+ position: absolute;
  bottom: 0;
  display: flex;
  flex-direction: column;

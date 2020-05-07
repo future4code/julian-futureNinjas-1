@@ -6,6 +6,8 @@ import { ComponenteInicial } from './ComponenteInicial'
 import Header from './Header'
 import Footer from './Footer'
 import InputLabel from '@material-ui/core/InputLabel';
+import PaginaGetJobs from './PaginaGetJobs'
+import { CadastroServicos } from './CadastroServicos'
 
 const SecaoBusca = styled.div`
     background-color: #aba9a4;
@@ -54,8 +56,18 @@ const ImagemProdutos = styled.div`
 const Paragrafo = styled.p`
     margin-bottom: 20px;
 `
+const Produto = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bolder;
+`
 
 class Secoes extends React.Component {
+    state = {
+        pagina: 'Secoes'
+    }
+
     componentDidMount() {
         if (this.props.scroll === 'Fornecedor') {
             window.scrollTo({ top: 800, behavior: 'smooth' })
@@ -64,48 +76,102 @@ class Secoes extends React.Component {
         }
     }
 
-    render() {
+    onClickGetJobs = () => {
+        this.setState({ pagina: 'GetJobs' })
+    }
 
-        return (
-            <div>
-                <Header />
-                <SecaoBusca>
-                    <SecaoTexto>
-                        <H3>O jeito mais esperto de contratar um serviço!</H3>
-                        <Button variant='contained' color='primary'>Veja Mais</Button>
-                    </SecaoTexto>
-                    <Img src='https://picsum.photos/300/300?a=1' />
-                </SecaoBusca>
-                <SecaoConsumidor id='Consumidor'>
-                    <SecaoTexto>
-                        <H3>Para o consumidor...</H3>
-                        <p>bla bla bla bla bla</p>
-                    </SecaoTexto>
-                    <ImagemProdutos>
-                        <ImgProduto src='https://picsum.photos/110/110?a=1' />
-                        <ImgProduto src='https://picsum.photos/110/110?a=2' />
-                        <ImgProduto src='https://picsum.photos/110/110?a=3' />
-                        <ImgProduto src='https://picsum.photos/110/110?a=4' />
-                        <ImgProduto src='https://picsum.photos/110/110?a=5' />
-                    </ImagemProdutos>
-                </SecaoConsumidor>
-                <SecaoFornecedor id='Fornecedor'>
-                    <ImagemProdutos>
-                        <ImgProduto src='https://picsum.photos/110/110?a=6' />
-                        <ImgProduto src='https://picsum.photos/110/110?a=7' />
-                        <ImgProduto src='https://picsum.photos/110/110?a=8' />
-                        <ImgProduto src='https://picsum.photos/110/110?a=9' />
-                        <ImgProduto src='https://picsum.photos/110/110?a=10' />
-                    </ImagemProdutos>
-                    <SecaoTexto>
-                        <H3>Para o fornecedor...</H3>
-                        <Paragrafo>bla bla bla bla bla</Paragrafo>
-                        <Button variant='contained' color='secondary'>Cadastre Seu Serviço</Button>
-                    </SecaoTexto>
-                </SecaoFornecedor>
-                <Footer />
-            </div>
-        )
+    onClickCadastro = () => {
+        this.setState({ pagina: 'Cadastro' })
+    }
+
+    onClickInicio = () => {
+        this.setState({ pagina: 'Secoes' })
+    }
+
+    render() {
+        switch (this.state.pagina) {
+            case 'Secoes':
+                return (
+                    <div>
+                        <Header onClickBotao={this.onClickInicio} />
+                        <SecaoBusca>
+                            <SecaoTexto>
+                                <H3>O jeito mais esperto de contratar um serviço!</H3>
+                                <Button onClick={this.onClickGetJobs} variant='contained' color='primary'>Veja Mais</Button>
+                            </SecaoTexto>
+                            <Img src='https://picsum.photos/300/300?a=1' />
+                        </SecaoBusca>
+                        <SecaoConsumidor id='Consumidor'>
+                            <SecaoTexto>
+                                <H3>Para o consumidor...</H3>
+                                <p>bla bla bla bla bla</p>
+                            </SecaoTexto>
+                            <ImagemProdutos>
+                                <Produto>
+                                    <ImgProduto src='https://picsum.photos/110/110?a=1' />
+                                    <p>Título</p>
+                                </Produto> 
+                                <Produto>
+                                    <ImgProduto src='https://picsum.photos/110/110?a=2' />
+                                    <p>Título</p>
+                                </Produto> 
+                                <Produto>
+                                    <ImgProduto src='https://picsum.photos/110/110?a=3' />
+                                    <p>Título</p>
+                                </Produto> 
+                                <Produto>
+                                    <ImgProduto src='https://picsum.photos/110/110?a=4' />
+                                    <p>Título</p>
+                                </Produto> 
+                                <Produto>
+                                    <ImgProduto src='https://picsum.photos/110/110?a=5' />
+                                    <p>Título</p>
+                                </Produto> 
+                            </ImagemProdutos>
+                        </SecaoConsumidor>
+                        <SecaoFornecedor id='Fornecedor'>
+                            <ImagemProdutos>
+                            <Produto>
+                                    <ImgProduto src='https://picsum.photos/110/110?a=6' />
+                                    <p>Título</p>
+                                </Produto> 
+                                <Produto>
+                                    <ImgProduto src='https://picsum.photos/110/110?a=7' />
+                                    <p>Título</p>
+                                </Produto> 
+                                <Produto>
+                                    <ImgProduto src='https://picsum.photos/110/110?a=8' />
+                                    <p>Título</p>
+                                </Produto> 
+                                <Produto>
+                                    <ImgProduto src='https://picsum.photos/110/110?a=9' />
+                                    <p>Título</p>
+                                </Produto> 
+                                <Produto>
+                                    <ImgProduto src='https://picsum.photos/110/110?a=10' />
+                                    <p>Título</p>
+                                </Produto> 
+                            </ImagemProdutos>
+                            <SecaoTexto>
+                                <H3>Para o fornecedor...</H3>
+                                <Paragrafo>bla bla bla bla bla</Paragrafo>
+                                <Button onClick={this.onClickCadastro} variant='contained' color='secondary'>Cadastre Seu Serviço</Button>
+                            </SecaoTexto>
+                        </SecaoFornecedor>
+                        <Footer />
+                    </div>
+                )
+            case 'GetJobs':
+                return (<div>
+                    <Header onClickBotao={this.onClickInicio} />
+                    <PaginaGetJobs />
+                </div>)
+            case 'Cadastro':
+                return (<div>
+                    <Header onClickBotao={this.onClickInicio} />
+                    <CadastroServicos />
+                </div>)
+        }
     }
 }
 export default Secoes

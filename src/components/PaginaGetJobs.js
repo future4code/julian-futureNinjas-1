@@ -80,12 +80,12 @@ const BotaoFiltrarDescricao = styled.button`
 `
 
 class PaginaGetJobs extends React.Component {
+    onClickInicio = () => {
+        this.setState({ pagina: 'Secoes' })
+    }
     render() {
         return (
             <BoxGetJobs>
-
-                <Header />
-
                 <Container>
 
                     <ContainerFiltros>

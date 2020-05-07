@@ -68,12 +68,13 @@ const DivFooter = styled.div`
     width: 100%;
 `
 export class CadastroServicos extends React.Component {
+    onClickInicio = () => {
+        this.setState({ pagina: 'Secoes' })
+    }
     render() {
 
         return (
             <div>
-                <Header />
-
                 <Container>
                     <h2>Cadastre o seu serviço</h2>
                     <DivCadastro>

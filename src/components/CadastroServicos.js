@@ -6,6 +6,7 @@ import Footer from './Footer'
 import React from 'react'
 import Inputs from '@material-ui/core/Input'
 import InputDate from '@material-ui/core/InputBase'
+import Select from '@material-ui/core/Select';
 
 const Container = styled.div`
     display: flex;
@@ -92,7 +93,13 @@ export class CadastroServicos extends React.Component {
                         </DivInputs>
                         <DivInputs>
                             <label for="pagamento">Método(s) de pagamento</label>
-                            <Inputsy type="text" id="pagamento"></Inputsy>
+                            <select>
+                                <option value={''}></option>
+                                <option value={'Credito'}>Crédito</option>
+                                <option value={'Dinheiro'}>Dinheiro</option>
+                                <option value={'Boleto'}>Boleto</option>
+                            </select>
+                            {/* <Inputsy type="text" id="pagamento"></Inputsy> */}
                         </DivInputs>
                         <DivInputs>
                             <label for="prazo">Prazo</label>

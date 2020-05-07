@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import axios from "axios"
+import axios from 'axios'
 import Header from './Header'
 import Footer from './Footer'
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core'
 
 const BoxGetJobs = styled.div`
     height: 80vh;
@@ -37,6 +38,7 @@ const SecaoServicos = styled.div`
 
 const ImgServico = styled.img`
     border-radius: 100%;
+    height: 10px;
 `
 
 const LabelValorMax = styled.label`
@@ -67,23 +69,140 @@ const InputDescricao = styled.input`
     margin: 5px;
 `
 
-const BotaoFiltrarTitulo = styled.button`
-    border-radius: 30px;
-    background-color: #DABFFF;
-    padding: 5px 15px;
-`
-
-const BotaoFiltrarDescricao = styled.button`
+const BotaoFiltrar = styled.button`
     border-radius: 30px;
     background-color:  #DABFFF;
     padding: 5px 5px;
 `
 
+const CardServico = styled(Card)`
+    height: 70%;
+`
+
 class PaginaGetJobs extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            jobs: [],
+            valorInputOrdem: '',
+            valorInputMax: '',
+            valorInputMin: '',
+            valorInputTitulo: '',
+            valorInputDescricao: ''
+        }
+    }
+
+    componentDidMount() {
+        const listaDeServicos = axios.get('https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs');
+
+        listaDeServicos.then( response => {
+            this.setState({
+                jobs: response.data.jobs
+            });
+        }).catch( error => {
+            console.log(error)
+        })
+    }
+
+    getDados = async () => {
+        const dados = await axios.get('https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs');
+        return dados.data.jobs;
+    }
+
+    onChangeInputOrdem = (event) => {
+        this.setState({
+            valorInputOrdem: event.target.value
+        });
+    }
+
+    onChangeInputMax = (event) => {
+        this.setState({
+            valorInputMax: event.target.value
+        });
+    }
+
+    onChangeInputMin = (event) => {
+        this.setState({
+            valorInputMin: event.target.value
+        });
+    }
+
+    onChangeInputTitulo = (event) => {
+        this.setState({
+            valorInputTitulo: event.target.value
+        });
+    }
+
+    onChangeInputDescricao = (event) => {
+        this.setState({
+            valorInputDescricao: event.target.value
+        });
+    }
+
+    filtrarServicos = () => {
+        const listaMin = this.state.jobs.filter(job => {
+            if (this.state.valorInputMin === "") {
+              return true;
+            } else {
+              return job.value >= this.state.valorInputMin;
+            }
+          });
+      
+          const listaMax = this.state.jobs.filter(job => {
+            if (this.state.valorInputMax === "") {
+              return true;
+            } else {
+              return job.value <= this.state.valorInputMax;
+            }
+          });
+      
+          const listaTitulo = this.state.jobs.filter(job => {
+            return job.title.toLowerCase().indexOf(this.state.valorInputTitulo.toLowerCase()) !== -1;
+          });
+
+          const listaDescricao = this.state.jobs.filter(job => {
+            return job.description.toLowerCase().indexOf(this.state.valorInputDescricao.toLowerCase()) !== -1;
+          });
+
+          const listaDeServicosFiltrados = listaDescricao.filter(job => {
+              return (listaMin.indexOf(job) !== -1) && (listaMax.indexOf(job) !== -1) && (listaTitulo.indexOf(job) !== -1);
+          });
+
+          return listaDeServicosFiltrados;
+    }
+
     onClickInicio = () => {
         this.setState({ pagina: 'Secoes' })
     }
     render() {
+        const servicosFiltrados = this.filtrarServicos();
+        const listaDeServicos = servicosFiltrados.map( (job, index) => {
+            return (
+                <CardServico>
+                    <CardActionArea>
+                        <CardMedia
+                            component={'img'}
+                            alt={job.title}
+                            height={'140'}
+                            image={`https://picsum.photos/110/110?a=${index + 1}`}
+                            title={job.title}
+                        />
+                        <CardContent>
+                            <Typography variant={"h5"} component={"h2"}>
+                                {job.title}
+                            </Typography>
+                            <Typography variant={"body2"} color={"textSecondary"} component={"p"}>
+                                {job.description}
+                            </Typography>
+                            <Typography variant={"body2"} color={"textSecondary"} component={"p"}>
+                                {`R$ ${job.value}`}
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                </CardServico>
+            )
+        })
         return (
             <BoxGetJobs>
                 <Container>
@@ -94,7 +213,7 @@ class PaginaGetJobs extends React.Component {
 
                         <p>Ordenar por:</p>
 
-                        <OrdenaProdutos>
+                        <OrdenaProdutos value={this.state.valorInputOrdem} onChange={this.onChangeInputOrdem}>
 
                             <option>Ordem Crescente</option>
                             <option>Ordem Decrescente</option>
@@ -102,33 +221,38 @@ class PaginaGetJobs extends React.Component {
                         </OrdenaProdutos>
 
                             <LabelValorMax>Valor Máximo:</LabelValorMax>
-                            <InputValorMax type={'number'} value={''} onChange={''} />
+                            <InputValorMax
+                                type={'number'}
+                                value={this.state.valorInputMax}
+                                onChange={this.onChangeInputMax}
+                            />
 
                             <LabelValorMin>Valor Mínimo:</LabelValorMin>
-                            <InputValorMin type={'number'} value={''} onChange={''} />
+                            <InputValorMin
+                                type={'number'}
+                                value={this.state.valorInputMin}
+                                onChange={this.onChangeInputMin}
+                            />
 
                             <LabelTitulo>Título:</LabelTitulo>
-                            <InputTitulo type={'text'} value={''} onChange={''} />
-
-                            <BotaoFiltrarTitulo>Filtrar título</BotaoFiltrarTitulo>
+                            <InputTitulo
+                                type={'text'}
+                                value={this.state.valorInputTitulo}
+                                onChange={this.onChangeInputTitulo}
+                            />
 
                             <LabelDescricao>Descrição:</LabelDescricao>
-                            <InputDescricao type={'text'} value={''} onChange={''} />
-
-                            <BotaoFiltrarDescricao>Filtrar descrição</BotaoFiltrarDescricao>
+                            <InputDescricao
+                                type={'text'}
+                                value={this.state.valorInputDescricao}
+                                onChange={this.onChangeInputDescricao}
+                            />
 
                     </ContainerFiltros>
 
                     <SecaoServicos>
 
-                        <ImgServico src='https://picsum.photos/110/110?a=1' />
-                        <ImgServico src='https://picsum.photos/110/110?a=2' />
-                        <ImgServico src='https://picsum.photos/110/110?a=4' />
-                        <ImgServico src='https://picsum.photos/110/110?a=6' />
-                        <ImgServico src='https://picsum.photos/110/110?a=8' />
-                        <ImgServico src='https://picsum.photos/110/110?a=12' />
-                        <ImgServico src='https://picsum.photos/110/110?a=14' />
-                        <ImgServico src='https://picsum.photos/110/110?a=24' />
+                        {listaDeServicos}
 
                     </SecaoServicos>
 

@@ -99,6 +99,8 @@ export class CadastroServicos extends React.Component {
                                 <option value={'Dinheiro'}>Dinheiro</option>
                                 <option value={'Boleto'}>Boleto</option>
                             </select>
+
+
                         </DivInputs>
                         <DivInputs>
                             <label for="prazo">Prazo</label>

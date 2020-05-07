@@ -29,29 +29,23 @@ const Img = styled.img`
 const SecaoConsumidor = styled.div`
     height: 60vh;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     background-color: #907AD6;
+    padding: 0 10vh;
 `
 const SecaoFornecedor = styled.div`
     height: 60vh;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     background-color: #7FDEFF;
+    padding: 0 10vh;
 `
 const ImgProduto = styled.img`
     border-radius: 100%; 
 `
 const ImagemProdutos = styled.div`
-    margin-right: -20vh;
-    width: 60vw;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-`
-const ImagemFornecedor = styled.div`
-    margin-left: -20vh;
     width: 60vw;
     display: flex;
     flex-wrap: wrap;
@@ -62,7 +56,16 @@ const Paragrafo = styled.p`
 `
 
 class Secoes extends React.Component {
+    componentDidMount() {
+        if (this.props.scroll === 'Fornecedor') {
+            window.scrollTo({ top: 800, behavior: 'smooth' })
+        } else {
+            window.scrollTo({ top: 466, behavior: 'smooth' })
+        }
+    }
+
     render() {
+
         return (
             <div>
                 <Header />
@@ -73,7 +76,7 @@ class Secoes extends React.Component {
                     </SecaoTexto>
                     <Img src='https://picsum.photos/300/300?a=1' />
                 </SecaoBusca>
-                <SecaoConsumidor>
+                <SecaoConsumidor id='Consumidor'>
                     <SecaoTexto>
                         <H3>Para o consumidor...</H3>
                         <p>bla bla bla bla bla</p>
@@ -86,18 +89,18 @@ class Secoes extends React.Component {
                         <ImgProduto src='https://picsum.photos/110/110?a=5' />
                     </ImagemProdutos>
                 </SecaoConsumidor>
-                <SecaoFornecedor>
-                    <ImagemFornecedor>
+                <SecaoFornecedor id='Fornecedor'>
+                    <ImagemProdutos>
                         <ImgProduto src='https://picsum.photos/110/110?a=6' />
                         <ImgProduto src='https://picsum.photos/110/110?a=7' />
                         <ImgProduto src='https://picsum.photos/110/110?a=8' />
                         <ImgProduto src='https://picsum.photos/110/110?a=9' />
                         <ImgProduto src='https://picsum.photos/110/110?a=10' />
-                    </ImagemFornecedor>
+                    </ImagemProdutos>
                     <SecaoTexto>
                         <H3>Para o fornecedor...</H3>
                         <Paragrafo>bla bla bla bla bla</Paragrafo>
-                        <Button  variant='contained' color='secondary'>Cadastre Seu Serviço</Button>
+                        <Button variant='contained' color='secondary'>Cadastre Seu Serviço</Button>
                     </SecaoTexto>
                 </SecaoFornecedor>
                 <Footer />

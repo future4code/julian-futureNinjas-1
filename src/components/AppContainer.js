@@ -3,9 +3,6 @@ import Button from '@material-ui/core/Button'
 import Link from '@material-ui/core/Link'
 import styled from 'styled-components'
 import {ComponenteInicial} from './ComponenteInicial'
-import Header from './Header'
-import Footer from './Footer'
-import Secoes from './Secoes'
 import { CadastroServicos }  from './CadastroServicos'
 import { ServicoCadastrado }  from './ServicoCadastrado'
 import PaginaGetJobs from './PaginaGetJobs'
@@ -15,11 +12,10 @@ export class AppContainer extends Component {
 
     return (
       <div>
- 
-        <Secoes/>
-        {/*<CadastroServicos/>*/}
-        {/*<ServicoCadastrado/>*/}
-        {/*<PaginaGetJobs/>*/}
+        <ComponenteInicial />
+        {/* <CadastroServicos/> */}
+        {/* <ServicoCadastrado/> */}
+        {/* <PaginaGetJobs /> */}
       </div>
     )
   }

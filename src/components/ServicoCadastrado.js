@@ -1,12 +1,12 @@
 
 import Button from '@material-ui/core/Button'
 import styled from 'styled-components'
-import {ComponenteInicial} from './ComponenteInicial'
+import { ComponenteInicial } from './ComponenteInicial'
 import Header from './Header'
 import Footer from './Footer'
 import React from 'react'
 
-const ContainerServicos = styled.div `
+const ContainerServicos = styled.div`
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-template-rows: 80vh;
@@ -15,10 +15,8 @@ const ContainerServicos = styled.div `
 const LadoEsquerdo = styled.div`
     background-color: #7FDEFF;
 `
-
 const LadoDireito = styled.div`
     background-color: #907AD6;
-
 `
 /*[LADO ESQUERDO]Estilização dos elementos que ficam à esquerda da página*/
 const ElementosEsquerda = styled.div`
@@ -96,13 +94,11 @@ const OsBotoes = styled.div`
 
 export class ServicoCadastrado extends React.Component {
     render() {
-  
-      return (
-        <div>
-            <Header/>
-               <ContainerServicos>
-                    <LadoEsquerdo>
-                        
+
+        return (
+            <div>
+                <Header />
+                <ContainerServicos>
                         <ElementosEsquerda>
                             <Textuals>
                                 <PageHeader>Serviço </PageHeader>

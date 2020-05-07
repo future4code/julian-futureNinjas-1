@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import Button from '@material-ui/core/Button'
 import Link from '@material-ui/core/Link'
 import styled from 'styled-components'
+import Header from './Header'
+import Footer from './Footer'
+import Secoes from './Secoes'
 
 const Container = styled.div`
   width: 100%;
@@ -34,24 +37,50 @@ const H1Ninjas = styled.h1`
 `
 
 export class ComponenteInicial extends Component {
-  render() {
+  state = {
+    paginaConsumidor: 'Inicio'
+  }
 
-    return (
-      <Container>
-        <H1>
-          <h1>LABE</h1>
-          <H1Ninjas>NINJAS</H1Ninjas>
-        </H1>
-        <Frases>
-          <h4>O que você precisar</h4>
-          <h4>Quando você precisar</h4>
-        </Frases>
-        <p>Eu sou...</p>
-        <Botoes>
-          <Button variant='contained'>FORNECEDOR</Button>
-          <Button variant='contained'>CONSUMIDOR</Button>
-        </Botoes>
-      </Container>
-    )
+  onClickFornecedor = () => {
+    this.setState({ paginaConsumidor: 'Fornecedor' })
+  }
+
+  onClickConsumidor = () => {
+    this.setState({ paginaConsumidor: 'Consumidor' })
+  }
+
+  render() {
+    switch (this.state.paginaConsumidor) {
+      case 'Inicio':
+        return (
+          <Container>
+            <H1>
+              <h1>LABE</h1>
+              <H1Ninjas>NINJAS</H1Ninjas>
+            </H1>
+            <Frases>
+              <h4>O que você precisar</h4>
+              <h4>Quando você precisar</h4>
+            </Frases>
+            <p>Eu sou...</p>
+            <Botoes>
+              <Button onClick={this.onClickFornecedor} variant='contained'>FORNECEDOR</Button>
+              <Button onClick={this.onClickConsumidor} variant='contained'>CONSUMIDOR</Button>
+            </Botoes>
+          </Container>
+        )
+      case 'Fornecedor':
+        return (
+          <div>
+            <Secoes scroll={this.state.paginaConsumidor} />
+          </div>
+        )
+      case 'Consumidor':
+        return (
+          <div>
+            <Secoes scroll={this.state.paginaConsumidor} />
+          </div>
+        )
+    }
   }
 }

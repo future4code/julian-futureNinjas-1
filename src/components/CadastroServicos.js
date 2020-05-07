@@ -92,7 +92,12 @@ export class CadastroServicos extends React.Component {
                         </DivInputs>
                         <DivInputs>
                             <label for="pagamento">Método(s) de pagamento</label>
-                            <Inputsy type="text" id="pagamento"></Inputsy>
+                            <select>
+                                <option value={''}></option>
+                                <option value={'Credito'}>Crédito</option>
+                                <option value={'Dinheiro'}>Dinheiro</option>
+                                <option value={'Boleto'}>Boleto</option>
+                            </select>
                         </DivInputs>
                         <DivInputs>
                             <label for="prazo">Prazo</label>

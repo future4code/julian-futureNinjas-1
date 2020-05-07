@@ -7,7 +7,7 @@ import { CadastroServicos }  from './CadastroServicos'
 import { ServicoCadastrado }  from './ServicoCadastrado'
 import PaginaGetJobs from './PaginaGetJobs'
 
-export class AppContainer extends Component {
+export class AppContainer extends React.Component {
   render() {
 
     return (

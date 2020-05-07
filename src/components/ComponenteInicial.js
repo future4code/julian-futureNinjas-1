@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import Header from './Header'
 import Footer from './Footer'
 import Secoes from './Secoes'
+import { ServicoCadastrado } from './ServicoCadastrado'
+import { CadastroServicos } from './CadastroServicos'
 
 const Container = styled.div`
   width: 100%;
@@ -50,6 +52,7 @@ export class ComponenteInicial extends Component {
   }
 
   render() {
+    
     switch (this.state.paginaConsumidor) {
       case 'Inicio':
         return (

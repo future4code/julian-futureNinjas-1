@@ -100,6 +100,7 @@ export class ServicoCadastrado extends React.Component {
                 <Header />
                 <ContainerServicos>
                 <LadoEsquerdo>
+                    
                         <ElementosEsquerda>
                             <Textuals>
                                 <PageHeader>Serviço </PageHeader>

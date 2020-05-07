@@ -8,6 +8,7 @@ import Footer from './Footer'
 import Secoes from './Secoes'
 import { CadastroServicos }  from './CadastroServicos'
 import { ServicoCadastrado }  from './ServicoCadastrado'
+import PaginaGetJobs from './PaginaGetJobs'
 
 export class AppContainer extends Component {
   render() {
@@ -15,9 +16,10 @@ export class AppContainer extends Component {
     return (
       <div>
  
-        {/*<Secoes/>*/}
+        <Secoes/>
         {/*<CadastroServicos/>*/}
-        <ServicoCadastrado />
+        {/*<ServicoCadastrado/>*/}
+        {/*<PaginaGetJobs/>*/}
       </div>
     )
   }

@@ -89,7 +89,7 @@ class PaginaGetJobs extends React.Component {
             valorInputMax: '',
             valorInputMin: '',
             valorInputTitulo: '',
-            valorInputDescricao: ''
+            valorInputDescricao: '', 
         }
     }
 
@@ -114,6 +114,7 @@ class PaginaGetJobs extends React.Component {
         this.setState({
             valorInputOrdem: event.target.value
         });
+        
     }
 
     onChangeInputMax = (event) => {
@@ -168,19 +169,28 @@ class PaginaGetJobs extends React.Component {
           const listaDeServicosFiltrados = listaDescricao.filter(job => {
               return (listaMin.indexOf(job) !== -1) && (listaMax.indexOf(job) !== -1) && (listaTitulo.indexOf(job) !== -1);
           });
-
-          return listaDeServicosFiltrados;
+          
+            return listaDeServicosFiltrados;
     }
 
     onClickInicio = () => {
         this.setState({ pagina: 'Secoes' })
     }
+
+    onClickVaiPraServicoCadastrado= () => {
+        this.setState({ pagina: 'ServicoCadastrado' })
+    }
+
+    
     render() {
+        console.log(this.filtrarServicos())
         const servicosFiltrados = this.filtrarServicos();
         const listaDeServicos = servicosFiltrados.map( (job, index) => {
+
             return (
+
                 <CardServico>
-                    <CardActionArea>
+                    <CardActionArea onClick={this.vaiPraServicoCadastrado}>
                         <CardMedia
                             component={'img'}
                             alt={job.title}
@@ -203,6 +213,7 @@ class PaginaGetJobs extends React.Component {
                 </CardServico>
             )
         })
+
         return (
             <BoxGetJobs>
                 <Container>
@@ -215,8 +226,8 @@ class PaginaGetJobs extends React.Component {
 
                         <OrdenaProdutos value={this.state.valorInputOrdem} onChange={this.onChangeInputOrdem}>
 
-                            <option>Ordem Crescente</option>
-                            <option>Ordem Decrescente</option>
+                            <option value={'OrdemCrescente'}>Ordem Crescente</option>
+                            <option value={'OrdemDecrescente'}>Ordem Decrescente</option>
 
                         </OrdenaProdutos>
 

@@ -17,7 +17,7 @@ export class AppContainer extends Component {
  
         {/*<Secoes/>*/}
         {/*<CadastroServicos/>*/}
-        <ServicoCadastrado/>
+        <ServicoCadastrado />
       </div>
     )
   }

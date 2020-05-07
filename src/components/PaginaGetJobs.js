@@ -172,6 +172,9 @@ class PaginaGetJobs extends React.Component {
           return listaDeServicosFiltrados;
     }
 
+    onClickInicio = () => {
+        this.setState({ pagina: 'Secoes' })
+    }
     render() {
         const servicosFiltrados = this.filtrarServicos();
         const listaDeServicos = servicosFiltrados.map( (job, index) => {
@@ -202,9 +205,6 @@ class PaginaGetJobs extends React.Component {
         })
         return (
             <BoxGetJobs>
-
-                <Header />
-
                 <Container>
 
                     <ContainerFiltros>

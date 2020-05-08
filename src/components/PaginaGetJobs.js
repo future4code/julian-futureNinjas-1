@@ -181,11 +181,19 @@ class PaginaGetJobs extends React.Component {
         this.setState({ pagina: 'ServicoCadastrado' })
     }
 
+
     
     render() {
-        console.log(this.filtrarServicos())
         const servicosFiltrados = this.filtrarServicos();
-        const listaDeServicos = servicosFiltrados.map( (job, index) => {
+        const listaFinal = this.state.valorInputOrdem === 'OrdemCrescente' ? servicosFiltrados.sort(function (a,b) {
+            return a.value - b.value
+        }):
+        servicosFiltrados.sort(function (a,b) {
+            return b.value - a.value
+        })
+
+        console.log(listaFinal)
+        const listaDeServicos = listaFinal.map( (job, index) => {
 
             return (
 

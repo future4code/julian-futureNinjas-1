@@ -6,6 +6,8 @@ import Footer from './Footer'
 import React from 'react'
 import Inputs from '@material-ui/core/Input'
 import InputDate from '@material-ui/core/InputBase'
+import axios from 'axios'
+import TextField from '@material-ui/core/TextField';
 
 const Container = styled.div`
     display: flex;
@@ -31,7 +33,7 @@ const Labels = styled.label`
     flex-direction: flex-start
 `
 
-const Inputsy = styled(Inputs)`
+const Inputsy = styled(TextField)`
     width: 25vh;
     display: flex;
     align-self: center;
@@ -68,9 +70,73 @@ const DivFooter = styled.div`
     width: 100%;
 `
 export class CadastroServicos extends React.Component {
+    state = {
+        inputTitulo: '',
+        inputDescricao: '',
+        inputValor: 0,
+        inputPagamento: [],
+        inputPrazo: 0
+    }
     onClickInicio = () => {
         this.setState({ pagina: 'Secoes' })
     }
+
+    onChangeTitulo = event => {
+        this.setState({ inputTitulo: event.target.value })
+    }
+
+    onChangeDescricao = event => {
+        this.setState({ inputDescricao: event.target.value })
+    }
+
+    onChangeValor = event => {
+        this.setState({ inputValor: event.target.value })
+    }
+
+    onChangePagamento = event => {
+        this.setState({ inputPagamento: event.target.value })
+    }
+
+    onChangePrazo = event => {
+        this.setState({ inputPrazo: event.target.value })
+    }
+
+    onCriateServico = event => {
+        this.cadastrarServico(this.state.inputTitulo,
+            this.state.inputDescricao, 
+            this.state.inputValor, 
+            this.state.inputPagamento, 
+            this.state.inputPrazo)
+    }
+
+    cadastrarServico = (titulo, descricao, valor, pagamento, prazo) => {
+
+        const body = {
+            "title": titulo,
+            "description": descricao,
+            "value": valor,
+            "paymentMethods": pagamento,
+            "dueDate": prazo
+        }
+
+        axios.post(
+            'https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs',
+            body
+        ).then(res => {
+            window.alert('Serviço cadastrado', res)
+        }).catch(error => {
+            alert('ERRO', error.res)
+        })
+
+        this.setState({
+            inputTitulo: '',
+            inputDescricao: '',
+            inputValor: 0,
+            inputPagamento: [''],
+            inputPrazo: 0
+        })
+    }
+
     render() {
 
         return (
@@ -80,18 +146,18 @@ export class CadastroServicos extends React.Component {
                     <DivCadastro>
                         <DivInputs>
                             <label for="titulo">Titulo</label>
-                            <Inputsy type="text" id="titulo"></Inputsy>
+                            <Inputsy onChange={this.onChangeTitulo} type="text" id="titulo"></Inputsy>
                         </DivInputs>
                         <DivInputs>
                             <label for="descript">Descrição</label>
-                            <Inputsy type="text" id="descript"></Inputsy>
+                            <Inputsy onChange={this.onChangeDescricao} type="text" id="descript"></Inputsy>
                         </DivInputs>
                         <DivInputs>
                             <label for="remuneracao">valor da remuneração</label>
-                            <Inputsy type="text" id="remuneracao"></Inputsy>
+                            <Inputsy onChange={this.onChangeValor} type="number" id="remuneracao"></Inputsy>
                         </DivInputs>
                         <DivInputs>
-                            <label for="pagamento">Método(s) de pagamento</label>
+                            <label onChange={this.onChangePagamento} for="pagamento">Método(s) de pagamento</label>
                             <select>
                                 <option value={''}></option>
                                 <option value={'Credito'}>Crédito</option>
@@ -101,10 +167,10 @@ export class CadastroServicos extends React.Component {
                         </DivInputs>
                         <DivInputs>
                             <label for="prazo">Prazo</label>
-                            <InputData type="date" id="prazo"></InputData>
+                            <InputData onChange={this.onChangePrazo} type="date" id="prazo"></InputData>
                         </DivInputs>
                         <DivSoPraEle>
-                            <Botaozito size="small" variant="contained" color="secondary">Cadastrar</Botaozito>
+                            <Botaozito onClick={this.onCriateServico} size="small" variant="contained" color="secondary">Cadastrar</Botaozito>
                         </DivSoPraEle>
                     </DivCadastro>
                 </Container>

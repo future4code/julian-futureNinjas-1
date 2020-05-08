@@ -1,10 +1,11 @@
 
-import Button from '@material-ui/core/Button'
-import styled from 'styled-components'
-import {ComponenteInicial} from './ComponenteInicial'
-import Header from './Header'
-import Footer from './Footer'
-import React from 'react'
+import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
+import {ComponenteInicial} from './ComponenteInicial';
+import Header from './Header';
+import Footer from './Footer';
+import React from 'react';
+import TextField from '@material-ui/core/TextField';
 
 const ContainerServicos = styled.div `
     display: grid;
@@ -18,6 +19,7 @@ const LadoEsquerdo = styled.div`
 
 const LadoDireito = styled.div`
     background-color: #907AD6;
+    padding: 20px;
 
 `
 /*[LADO ESQUERDO]Estilização dos elementos que ficam à esquerda da página*/
@@ -122,7 +124,13 @@ export class ServicoCadastrado extends React.Component {
                         </ElementosEsquerda>
                     </LadoEsquerdo>
                     <LadoDireito>
-                        
+                    <TextField
+                        label="Envie uma mensagem!"
+                        multiline
+                        rows="10"
+                        margin="normal"
+                        variant="outlined"
+                        />
                     </LadoDireito>
                </ContainerServicos>
             <Footer/>

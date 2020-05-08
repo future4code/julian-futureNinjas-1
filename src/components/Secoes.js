@@ -104,7 +104,7 @@ class Secoes extends React.Component {
                         <SecaoConsumidor id='Consumidor'>
                             <SecaoTexto>
                                 <H3>Para o consumidor...</H3>
-                                <p>bla bla bla bla bla</p>
+                                <p>Temos os melhores serviços e os melhores profissionais disponíveis para o que precisar!</p>
                             </SecaoTexto>
                             <ImagemProdutos>
                                 <Produto>
@@ -154,7 +154,7 @@ class Secoes extends React.Component {
                             </ImagemProdutos>
                             <SecaoTexto>
                                 <H3>Para o fornecedor...</H3>
-                                <Paragrafo>bla bla bla bla bla</Paragrafo>
+                                <Paragrafo>É um especialista no assunto? Basta se cadastrar para ter os seus serviços divulgados para um amplo número de pessoas!</Paragrafo>
                                 <Button onClick={this.onClickCadastro} variant='contained' color='secondary'>Cadastre Seu Serviço</Button>
                             </SecaoTexto>
                         </SecaoFornecedor>

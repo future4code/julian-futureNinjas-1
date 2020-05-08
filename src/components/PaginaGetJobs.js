@@ -6,16 +6,18 @@ import Footer from './Footer'
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core'
 
 const BoxGetJobs = styled.div`
+    // display: flex;
+    // flex-direction: column;
+
     height: auto;
 `
 const Container = styled.div`
     display: grid;
     grid-template-columns: 1fr 4fr;
-    height: 100%;
-    margin-bottom: 15vh;
+    min-height: calc(100vh - 10vh - 15vh);
 `
 
-const ContainerFiltros = styled.ul`
+const ContainerFiltros = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,6 +33,7 @@ const SecaoServicos = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 10%;
     padding: 5%;
+
 `
 
 const ImgServico = styled.img`
@@ -73,7 +76,7 @@ const BotaoFiltrar = styled.button`
 `
 
 const CardServico = styled(Card)`
-    height: 70%;
+    height: 100%;
 `
 const DivFooter = styled.div`
     width: 100%;
@@ -194,7 +197,6 @@ class PaginaGetJobs extends React.Component {
                 return b.value - a.value
             })
 
-        console.log(listaFinal)
         const listaDeServicos = listaFinal.map((job, index) => {
 
             return (
@@ -221,11 +223,12 @@ class PaginaGetJobs extends React.Component {
                         </CardContent>
                     </CardActionArea>
                 </CardServico>
-            )
+            );
         })
 
         return (
             <BoxGetJobs>
+
                 <Container>
 
                     <ContainerFiltros>
@@ -276,11 +279,13 @@ class PaginaGetJobs extends React.Component {
                         {listaDeServicos}
 
                     </SecaoServicos>
-
                 </Container>
+
                 <DivFooter>
                     <Footer />
                 </DivFooter>
+                
+                
             </BoxGetJobs>
         );
     }

@@ -153,7 +153,7 @@ export class CadastroServicos extends React.Component {
                             <Inputsy onChange={this.onChangeDescricao} type="text" id="descript"></Inputsy>
                         </DivInputs>
                         <DivInputs>
-                            <label for="remuneracao">valor da remuneração</label>
+                            <label for="remuneracao">Valor da remuneração</label>
                             <Inputsy onChange={this.onChangeValor} type="number" id="remuneracao"></Inputsy>
                         </DivInputs>
                         <DivInputs>

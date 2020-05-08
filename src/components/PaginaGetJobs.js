@@ -6,14 +6,13 @@ import Footer from './Footer'
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core'
 
 const BoxGetJobs = styled.div`
-    height: 80vh;
-
+    height: auto;
 `
 const Container = styled.div`
     display: grid;
     grid-template-columns: 1fr 4fr;
     height: 100%;
-    
+    margin-bottom: 15vh;
 `
 
 const ContainerFiltros = styled.ul`
@@ -26,14 +25,12 @@ const ContainerFiltros = styled.ul`
 `
 
 const OrdenaProdutos = styled.select`
-    
 `
 const SecaoServicos = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 10%;
     padding: 5%;
-
 `
 
 const ImgServico = styled.img`
@@ -78,6 +75,11 @@ const BotaoFiltrar = styled.button`
 const CardServico = styled(Card)`
     height: 70%;
 `
+const DivFooter = styled.div`
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+`
 
 class PaginaGetJobs extends React.Component {
     constructor(props) {
@@ -89,18 +91,18 @@ class PaginaGetJobs extends React.Component {
             valorInputMax: '',
             valorInputMin: '',
             valorInputTitulo: '',
-            valorInputDescricao: '', 
+            valorInputDescricao: '',
         }
     }
 
     componentDidMount() {
         const listaDeServicos = axios.get('https://us-central1-labenu-apis.cloudfunctions.net/futureNinjasOne/jobs');
 
-        listaDeServicos.then( response => {
+        listaDeServicos.then(response => {
             this.setState({
                 jobs: response.data.jobs
             });
-        }).catch( error => {
+        }).catch(error => {
             console.log(error)
         })
     }
@@ -114,7 +116,7 @@ class PaginaGetJobs extends React.Component {
         this.setState({
             valorInputOrdem: event.target.value
         });
-        
+
     }
 
     onChangeInputMax = (event) => {
@@ -144,56 +146,56 @@ class PaginaGetJobs extends React.Component {
     filtrarServicos = () => {
         const listaMin = this.state.jobs.filter(job => {
             if (this.state.valorInputMin === "") {
-              return true;
+                return true;
             } else {
-              return job.value >= this.state.valorInputMin;
+                return job.value >= this.state.valorInputMin;
             }
-          });
-      
-          const listaMax = this.state.jobs.filter(job => {
+        });
+
+        const listaMax = this.state.jobs.filter(job => {
             if (this.state.valorInputMax === "") {
-              return true;
+                return true;
             } else {
-              return job.value <= this.state.valorInputMax;
+                return job.value <= this.state.valorInputMax;
             }
-          });
-      
-          const listaTitulo = this.state.jobs.filter(job => {
+        });
+
+        const listaTitulo = this.state.jobs.filter(job => {
             return job.title.toLowerCase().indexOf(this.state.valorInputTitulo.toLowerCase()) !== -1;
-          });
+        });
 
-          const listaDescricao = this.state.jobs.filter(job => {
+        const listaDescricao = this.state.jobs.filter(job => {
             return job.description.toLowerCase().indexOf(this.state.valorInputDescricao.toLowerCase()) !== -1;
-          });
+        });
 
-          const listaDeServicosFiltrados = listaDescricao.filter(job => {
-              return (listaMin.indexOf(job) !== -1) && (listaMax.indexOf(job) !== -1) && (listaTitulo.indexOf(job) !== -1);
-          });
-          
-            return listaDeServicosFiltrados;
+        const listaDeServicosFiltrados = listaDescricao.filter(job => {
+            return (listaMin.indexOf(job) !== -1) && (listaMax.indexOf(job) !== -1) && (listaTitulo.indexOf(job) !== -1);
+        });
+
+        return listaDeServicosFiltrados;
     }
 
     onClickInicio = () => {
         this.setState({ pagina: 'Secoes' })
     }
 
-    onClickVaiPraServicoCadastrado= () => {
+    onClickVaiPraServicoCadastrado = () => {
         this.setState({ pagina: 'ServicoCadastrado' })
     }
 
 
-    
+
     render() {
         const servicosFiltrados = this.filtrarServicos();
-        const listaFinal = this.state.valorInputOrdem === 'OrdemCrescente' ? servicosFiltrados.sort(function (a,b) {
+        const listaFinal = this.state.valorInputOrdem === 'OrdemCrescente' ? servicosFiltrados.sort(function (a, b) {
             return a.value - b.value
-        }):
-        servicosFiltrados.sort(function (a,b) {
-            return b.value - a.value
-        })
+        }) :
+            servicosFiltrados.sort(function (a, b) {
+                return b.value - a.value
+            })
 
         console.log(listaFinal)
-        const listaDeServicos = listaFinal.map( (job, index) => {
+        const listaDeServicos = listaFinal.map((job, index) => {
 
             return (
 
@@ -239,33 +241,33 @@ class PaginaGetJobs extends React.Component {
 
                         </OrdenaProdutos>
 
-                            <LabelValorMax>Valor Máximo:</LabelValorMax>
-                            <InputValorMax
-                                type={'number'}
-                                value={this.state.valorInputMax}
-                                onChange={this.onChangeInputMax}
-                            />
+                        <LabelValorMax>Valor Máximo:</LabelValorMax>
+                        <InputValorMax
+                            type={'number'}
+                            value={this.state.valorInputMax}
+                            onChange={this.onChangeInputMax}
+                        />
 
-                            <LabelValorMin>Valor Mínimo:</LabelValorMin>
-                            <InputValorMin
-                                type={'number'}
-                                value={this.state.valorInputMin}
-                                onChange={this.onChangeInputMin}
-                            />
+                        <LabelValorMin>Valor Mínimo:</LabelValorMin>
+                        <InputValorMin
+                            type={'number'}
+                            value={this.state.valorInputMin}
+                            onChange={this.onChangeInputMin}
+                        />
 
-                            <LabelTitulo>Título:</LabelTitulo>
-                            <InputTitulo
-                                type={'text'}
-                                value={this.state.valorInputTitulo}
-                                onChange={this.onChangeInputTitulo}
-                            />
+                        <LabelTitulo>Título:</LabelTitulo>
+                        <InputTitulo
+                            type={'text'}
+                            value={this.state.valorInputTitulo}
+                            onChange={this.onChangeInputTitulo}
+                        />
 
-                            <LabelDescricao>Descrição:</LabelDescricao>
-                            <InputDescricao
-                                type={'text'}
-                                value={this.state.valorInputDescricao}
-                                onChange={this.onChangeInputDescricao}
-                            />
+                        <LabelDescricao>Descrição:</LabelDescricao>
+                        <InputDescricao
+                            type={'text'}
+                            value={this.state.valorInputDescricao}
+                            onChange={this.onChangeInputDescricao}
+                        />
 
                     </ContainerFiltros>
 
@@ -276,9 +278,9 @@ class PaginaGetJobs extends React.Component {
                     </SecaoServicos>
 
                 </Container>
-
-                <Footer />
-
+                <DivFooter>
+                    <Footer />
+                </DivFooter>
             </BoxGetJobs>
         );
     }

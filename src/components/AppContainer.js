@@ -13,9 +13,6 @@ export class AppContainer extends Component {
     return (
       <div>
         <ComponenteInicial />
-        {/* <CadastroServicos/> */}
-        {/* <ServicoCadastrado/> */}
-        {/* <PaginaGetJobs /> */}
       </div>
     )
   }

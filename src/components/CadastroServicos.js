@@ -145,15 +145,15 @@ export class CadastroServicos extends React.Component {
                     <h2>Cadastre o seu serviço</h2>
                     <DivCadastro>
                         <DivInputs>
-                            <label for="titulo">Titulo</label>
+                            <label for="titulo">Titulo:</label>
                             <Inputsy onChange={this.onChangeTitulo} type="text" id="titulo"></Inputsy>
                         </DivInputs>
                         <DivInputs>
-                            <label for="descript">Descrição</label>
+                            <label for="descript">Descrição:</label>
                             <Inputsy onChange={this.onChangeDescricao} type="text" id="descript"></Inputsy>
                         </DivInputs>
                         <DivInputs>
-                            <label for="remuneracao">Valor da remuneração</label>
+                            <label for="remuneracao">Valor da remuneração:</label>
                             <Inputsy onChange={this.onChangeValor} type="number" id="remuneracao"></Inputsy>
                         </DivInputs>
                         <DivInputs>
@@ -166,7 +166,7 @@ export class CadastroServicos extends React.Component {
                             </select>
                         </DivInputs>
                         <DivInputs>
-                            <label for="prazo">Prazo</label>
+                            <label for="prazo">Prazo:</label>
                             <InputData onChange={this.onChangePrazo} type="date" id="prazo"></InputData>
                         </DivInputs>
                         <DivSoPraEle>

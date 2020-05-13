@@ -109,23 +109,23 @@ class Secoes extends React.Component {
                             <ImagemProdutos>
                                 <Produto>
                                     <ImgProduto src='https://picsum.photos/110/110?a=1' />
-                                    <p>Título</p>
+                                    <p>Assistência Técnica</p>
                                 </Produto> 
                                 <Produto>
                                     <ImgProduto src='https://picsum.photos/110/110?a=2' />
-                                    <p>Título</p>
+                                    <p>Serviços Domésticos</p>
                                 </Produto> 
                                 <Produto>
                                     <ImgProduto src='https://picsum.photos/110/110?a=3' />
-                                    <p>Título</p>
+                                    <p>Web Design</p>
                                 </Produto> 
                                 <Produto>
                                     <ImgProduto src='https://picsum.photos/110/110?a=4' />
-                                    <p>Título</p>
+                                    <p>Reformas</p>
                                 </Produto> 
                                 <Produto>
                                     <ImgProduto src='https://picsum.photos/110/110?a=5' />
-                                    <p>Título</p>
+                                    <p>Aulas Particulares</p>
                                 </Produto> 
                             </ImagemProdutos>
                         </SecaoConsumidor>
@@ -133,28 +133,28 @@ class Secoes extends React.Component {
                             <ImagemProdutos>
                             <Produto>
                                     <ImgProduto src='https://picsum.photos/110/110?a=6' />
-                                    <p>Título</p>
+                                    <p>Aula de teclado</p>
                                 </Produto> 
                                 <Produto>
                                     <ImgProduto src='https://picsum.photos/110/110?a=7' />
-                                    <p>Título</p>
+                                    <p>Aula de piano</p>
                                 </Produto> 
                                 <Produto>
                                     <ImgProduto src='https://picsum.photos/110/110?a=8' />
-                                    <p>Título</p>
+                                    <p>Reforços escolares</p>
                                 </Produto> 
                                 <Produto>
                                     <ImgProduto src='https://picsum.photos/110/110?a=9' />
-                                    <p>Título</p>
+                                    <p>Eletricista</p>
                                 </Produto> 
                                 <Produto>
                                     <ImgProduto src='https://picsum.photos/110/110?a=10' />
-                                    <p>Título</p>
+                                    <p>Jardineiro</p>
                                 </Produto> 
                             </ImagemProdutos>
                             <SecaoTexto>
                                 <H3>Para o fornecedor...</H3>
-                                <Paragrafo>É um especialista no assunto? Basta se cadastrar para ter os seus serviços divulgados para um amplo número de pessoas!</Paragrafo>
+                                <Paragrafo>É um especialista no assunto? Cadastre-se para ter os seus serviços divulgados para um amplo número de pessoas!</Paragrafo>
                                 <Button onClick={this.onClickCadastro} variant='contained' color='secondary'>Cadastre Seu Serviço</Button>
                             </SecaoTexto>
                         </SecaoFornecedor>
